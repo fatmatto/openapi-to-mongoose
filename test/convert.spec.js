@@ -2,10 +2,10 @@
 
 const test = require('ava')
 const path = require('path')
-const { convert } = require('../index')
+const { Convert } = require('../index')
 /**
  * Minimum Viable Smoke test
  */
 test('Minimum viable smoketest', async t => {
-  await t.notThrowsAsync(convert(path.join(__dirname, 'fixtures', 'openapi.yaml')))
+  await t.notThrowsAsync(Convert(path.join(__dirname, 'fixtures', 'openapi.yaml')))
 })

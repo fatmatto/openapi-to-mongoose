@@ -1,4 +1,5 @@
 const SwaggerParser = require('swagger-parser')
+const nestedProperty = require('nested-property')
 
 function openapiSchemaToMongooseSchema (schema) {
   const output = {}
@@ -46,4 +47,12 @@ async function Convert (openapiSpecFilePath) {
   return output
 }
 
-module.exports = Convert
+async function ConvertSingleSchema (openapiSpecFilePath, schemaPath) {
+  let api = await SwaggerParser.parse(openapiSpecFilePath)
+  api = await SwaggerParser.dereference(api)
+  const schema = nestedProperty.get(api, schemaPath)
+
+  return openapiSchemaToMongooseSchema(schema)
+}
+
+module.exports = { Convert, ConvertSingleSchema }

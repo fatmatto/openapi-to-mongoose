@@ -1,3 +1,4 @@
 module.exports = {
-  convert : require('./src/convert')
+  Convert: require('./src/convert').Convert,
+  ConvertSingleSchema: require('./src/convert').ConvertSingleSchema
 }
